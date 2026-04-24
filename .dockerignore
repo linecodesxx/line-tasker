@@ -1,0 +1,13 @@
+.git
+.gitignore
+.obsidian
+.pnpm-store
+node_modules
+**/node_modules
+**/dist
+**/.next
+coverage
+**/coverage
+apps/web
+docker-compose.yml
+TODO.MD
