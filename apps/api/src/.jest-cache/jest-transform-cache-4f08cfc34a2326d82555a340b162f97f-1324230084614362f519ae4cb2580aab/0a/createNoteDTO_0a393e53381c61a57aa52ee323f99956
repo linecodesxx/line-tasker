@@ -1,0 +1,36 @@
+3c6bc38e791653a3690091cd4659fd64
+"use strict";
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.CreateNoteDto = void 0;
+const class_validator_1 = require("class-validator");
+class CreateNoteDto {
+    title;
+    folderId;
+    contentMd;
+}
+exports.CreateNoteDto = CreateNoteDto;
+__decorate([
+    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.Length)(1, 160),
+    __metadata("design:type", String)
+], CreateNoteDto.prototype, "title", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], CreateNoteDto.prototype, "folderId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], CreateNoteDto.prototype, "contentMd", void 0);
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJmaWxlIjoiQzpcXFVzZXJzXFxmZXl0ZWxsMlxcRG9jdW1lbnRzXFxwcm9qZWN0c1xcbGluZS10YXNrZXJcXGFwcHNcXGFwaVxcc3JjXFxub3Rlc1xcZHRvXFxjcmVhdGVOb3RlRFRPLnRzIiwibWFwcGluZ3MiOiI7Ozs7Ozs7Ozs7OztBQUFBLHFEQUErRDtBQUUvRCxNQUFhLGFBQWE7SUFHeEIsS0FBSyxDQUFTO0lBSWQsUUFBUSxDQUFVO0lBSWxCLFNBQVMsQ0FBVTtDQUNwQjtBQVpELHNDQVlDO0FBVEM7SUFGQyxJQUFBLDBCQUFRLEdBQUU7SUFDVixJQUFBLHdCQUFNLEVBQUMsQ0FBQyxFQUFFLEdBQUcsQ0FBQzs7NENBQ0Q7QUFJZDtJQUZDLElBQUEsNEJBQVUsR0FBRTtJQUNaLElBQUEsMEJBQVEsR0FBRTs7K0NBQ087QUFJbEI7SUFGQyxJQUFBLDRCQUFVLEdBQUU7SUFDWixJQUFBLDBCQUFRLEdBQUU7O2dEQUNRIiwibmFtZXMiOltdLCJzb3VyY2VzIjpbIkM6XFxVc2Vyc1xcZmV5dGVsbDJcXERvY3VtZW50c1xccHJvamVjdHNcXGxpbmUtdGFza2VyXFxhcHBzXFxhcGlcXHNyY1xcbm90ZXNcXGR0b1xcY3JlYXRlTm90ZURUTy50cyJdLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgeyBJc09wdGlvbmFsLCBJc1N0cmluZywgTGVuZ3RoIH0gZnJvbSBcImNsYXNzLXZhbGlkYXRvclwiO1xyXG5cclxuZXhwb3J0IGNsYXNzIENyZWF0ZU5vdGVEdG8ge1xyXG4gIEBJc1N0cmluZygpXHJcbiAgQExlbmd0aCgxLCAxNjApXHJcbiAgdGl0bGU6IHN0cmluZztcclxuXHJcbiAgQElzT3B0aW9uYWwoKVxyXG4gIEBJc1N0cmluZygpXHJcbiAgZm9sZGVySWQ/OiBzdHJpbmc7XHJcblxyXG4gIEBJc09wdGlvbmFsKClcclxuICBASXNTdHJpbmcoKVxyXG4gIGNvbnRlbnRNZD86IHN0cmluZztcclxufSJdLCJ2ZXJzaW9uIjozfQ==

@@ -1,0 +1,144 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Get a free hosted Postgres database in seconds: `npx create-db`
+
+generator client {
+  provider               = "prisma-client"
+  output                 = "../generated/prisma"
+  moduleFormat           = "cjs"
+  generatedFileExtension = "cts"
+  importFileExtension    = "cjs"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum FolderKind {
+  ROOT
+  NOTES
+  TASKS
+  MIXED
+}
+
+enum FileKind {
+  NOTE
+  TASK
+}
+
+model User {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  name      String   @unique
+  password  String
+  avatar    String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  workspaces  Workspace[]
+  notesEdited Note[]      @relation("LastEditedNotes")
+}
+
+model Workspace {
+  id        String   @id @default(cuid())
+  ownerId   String
+  title     String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  owner   User @relation(fields: [ownerId], references: [id], onDelete: Cascade)
+
+  folders Folder[]
+  notes   Note[]
+  tasks   Task[]
+
+  @@index([ownerId])
+}
+
+model Folder {
+  id          String     @id @default(cuid())
+  workspaceId String
+  parentId    String?
+  name        String
+  kind        FolderKind @default(MIXED)
+  color       String?
+  icon        String?
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
+
+  workspace Workspace @relation(fields: [workspaceId], references: [id], onDelete: Cascade)
+  parent    Folder?    @relation("FolderTree", fields: [parentId], references: [id], onDelete: Cascade)
+  children  Folder[]   @relation("FolderTree")
+
+  notes Note[]
+  tasks Task[]
+
+  @@index([workspaceId])
+  @@index([parentId])
+  @@unique([workspaceId, parentId, name])
+}
+
+model Note {
+  id           String   @id @default(cuid())
+  workspaceId  String
+  folderId     String?
+  title        String
+  slug         String
+  relativePath String
+  contentMd    String   @default("")
+  excerpt      String?
+  version      Int      @default(1)
+  contentHash  String?
+  lastEditedBy String?
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+  deletedAt    DateTime?
+
+  workspace Workspace @relation(fields: [workspaceId], references: [id], onDelete: Cascade)
+  folder    Folder?    @relation(fields: [folderId], references: [id], onDelete: SetNull)
+  editor    User?      @relation("LastEditedNotes", fields: [lastEditedBy], references: [id], onDelete: SetNull)
+
+  @@index([workspaceId])
+  @@index([folderId])
+  @@index([deletedAt])
+  @@unique([workspaceId, relativePath])
+  @@unique([workspaceId, slug])
+}
+
+model Task {
+  id            String       @id @default(cuid())
+  workspaceId   String
+  folderId      String?
+  title         String
+  slug          String
+  relativePath  String
+  descriptionMd String?
+  status        TaskStatus   @default(TODO)
+  priority      TaskPriority @default(MEDIUM)
+  dueDate       DateTime?
+  createdAt     DateTime     @default(now())
+  updatedAt     DateTime     @updatedAt
+  deletedAt     DateTime?
+
+  workspace Workspace @relation(fields: [workspaceId], references: [id], onDelete: Cascade)
+  folder    Folder?    @relation(fields: [folderId], references: [id], onDelete: SetNull)
+
+  @@index([workspaceId])
+  @@index([folderId])
+  @@index([deletedAt])
+  @@unique([workspaceId, relativePath])
+  @@unique([workspaceId, slug])
+}
+
+enum TaskStatus {
+  TODO
+  IN_PROGRESS
+  DONE
+}
+
+enum TaskPriority {
+  LOW
+  MEDIUM
+  HIGH
+}

@@ -1,0 +1,24 @@
+650ec73b39e7e57f231934a7525937ad
+"use strict";
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.CreateWorkspaceDto = void 0;
+const class_validator_1 = require("class-validator");
+class CreateWorkspaceDto {
+    title;
+}
+exports.CreateWorkspaceDto = CreateWorkspaceDto;
+__decorate([
+    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.Length)(1, 100),
+    __metadata("design:type", String)
+], CreateWorkspaceDto.prototype, "title", void 0);
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJmaWxlIjoiQzpcXFVzZXJzXFxmZXl0ZWxsMlxcRG9jdW1lbnRzXFxwcm9qZWN0c1xcbGluZS10YXNrZXJcXGFwcHNcXGFwaVxcc3JjXFx3b3Jrc3BhY2VzXFxkdG9cXGNyZWF0ZVdvcmtzcGFjZXNEVE8udHMiLCJtYXBwaW5ncyI6Ijs7Ozs7Ozs7Ozs7O0FBQUEscURBQW1EO0FBRW5ELE1BQWEsa0JBQWtCO0lBRzdCLEtBQUssQ0FBUztDQUNmO0FBSkQsZ0RBSUM7QUFEQztJQUZDLElBQUEsMEJBQVEsR0FBRTtJQUNWLElBQUEsd0JBQU0sRUFBQyxDQUFDLEVBQUUsR0FBRyxDQUFDOztpREFDRCIsIm5hbWVzIjpbXSwic291cmNlcyI6WyJDOlxcVXNlcnNcXGZleXRlbGwyXFxEb2N1bWVudHNcXHByb2plY3RzXFxsaW5lLXRhc2tlclxcYXBwc1xcYXBpXFxzcmNcXHdvcmtzcGFjZXNcXGR0b1xcY3JlYXRlV29ya3NwYWNlc0RUTy50cyJdLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgeyBJc1N0cmluZywgTGVuZ3RoIH0gZnJvbSBcImNsYXNzLXZhbGlkYXRvclwiO1xyXG5cclxuZXhwb3J0IGNsYXNzIENyZWF0ZVdvcmtzcGFjZUR0byB7XHJcbiAgQElzU3RyaW5nKClcclxuICBATGVuZ3RoKDEsIDEwMClcclxuICB0aXRsZTogc3RyaW5nO1xyXG59XHJcbiJdLCJ2ZXJzaW9uIjozfQ==

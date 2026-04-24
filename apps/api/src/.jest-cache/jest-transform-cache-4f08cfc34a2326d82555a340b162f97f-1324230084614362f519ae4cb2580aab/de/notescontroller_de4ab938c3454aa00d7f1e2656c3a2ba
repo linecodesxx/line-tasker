@@ -1,0 +1,105 @@
+fee37b94a8792fe122e33497a9ccf949
+"use strict";
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __param = (this && this.__param) || function (paramIndex, decorator) {
+    return function (target, key) { decorator(target, key, paramIndex); }
+};
+var _a, _b, _c, _d;
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.NotesController = void 0;
+const common_1 = require("@nestjs/common");
+const jwt_guard_1 = require("src/auth/jwt.guard");
+const createNoteDTO_1 = require("./dto/createNoteDTO");
+const moveNoteDTO_1 = require("./dto/moveNoteDTO");
+const updateNoteDTO_1 = require("./dto/updateNoteDTO");
+const notes_service_1 = require("./notes.service");
+let NotesController = class NotesController {
+    notesService;
+    constructor(notesService) {
+        this.notesService = notesService;
+    }
+    list(workspaceId) {
+        return this.notesService.list(workspaceId);
+    }
+    getById(id, workspaceId) {
+        return this.notesService.getById(id, workspaceId);
+    }
+    create(workspaceId, req, dto) {
+        return this.notesService.create(workspaceId, req.user.id, dto);
+    }
+    update(id, workspaceId, req, dto) {
+        return this.notesService.update(id, workspaceId, req.user.id, dto);
+    }
+    move(id, workspaceId, dto) {
+        return this.notesService.move(id, workspaceId, dto);
+    }
+    remove(id, workspaceId) {
+        return this.notesService.remove(id, workspaceId);
+    }
+};
+exports.NotesController = NotesController;
+__decorate([
+    (0, common_1.Get)(),
+    __param(0, (0, common_1.Query)("workspaceId")),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], NotesController.prototype, "list", null);
+__decorate([
+    (0, common_1.Get)(":id"),
+    __param(0, (0, common_1.Param)("id")),
+    __param(1, (0, common_1.Query)("workspaceId")),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, String]),
+    __metadata("design:returntype", void 0)
+], NotesController.prototype, "getById", null);
+__decorate([
+    (0, common_1.Post)(),
+    __param(0, (0, common_1.Query)("workspaceId")),
+    __param(1, (0, common_1.Req)()),
+    __param(2, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, Object, typeof (_b = typeof createNoteDTO_1.CreateNoteDto !== "undefined" && createNoteDTO_1.CreateNoteDto) === "function" ? _b : Object]),
+    __metadata("design:returntype", void 0)
+], NotesController.prototype, "create", null);
+__decorate([
+    (0, common_1.Patch)(":id"),
+    __param(0, (0, common_1.Param)("id")),
+    __param(1, (0, common_1.Query)("workspaceId")),
+    __param(2, (0, common_1.Req)()),
+    __param(3, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, String, Object, typeof (_c = typeof updateNoteDTO_1.UpdateNoteDto !== "undefined" && updateNoteDTO_1.UpdateNoteDto) === "function" ? _c : Object]),
+    __metadata("design:returntype", void 0)
+], NotesController.prototype, "update", null);
+__decorate([
+    (0, common_1.Patch)(":id/move"),
+    __param(0, (0, common_1.Param)("id")),
+    __param(1, (0, common_1.Query)("workspaceId")),
+    __param(2, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, String, typeof (_d = typeof moveNoteDTO_1.MoveNoteDto !== "undefined" && moveNoteDTO_1.MoveNoteDto) === "function" ? _d : Object]),
+    __metadata("design:returntype", void 0)
+], NotesController.prototype, "move", null);
+__decorate([
+    (0, common_1.Delete)(":id"),
+    __param(0, (0, common_1.Param)("id")),
+    __param(1, (0, common_1.Query)("workspaceId")),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, String]),
+    __metadata("design:returntype", void 0)
+], NotesController.prototype, "remove", null);
+exports.NotesController = NotesController = __decorate([
+    (0, common_1.UseGuards)(jwt_guard_1.JwtAuthGuard),
+    (0, common_1.Controller)("notes"),
+    __metadata("design:paramtypes", [typeof (_a = typeof notes_service_1.NotesService !== "undefined" && notes_service_1.NotesService) === "function" ? _a : Object])
+], NotesController);
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJmaWxlIjoiQzpcXFVzZXJzXFxmZXl0ZWxsMlxcRG9jdW1lbnRzXFxwcm9qZWN0c1xcbGluZS10YXNrZXJcXGFwcHNcXGFwaVxcc3JjXFxub3Rlc1xcbm90ZXMuY29udHJvbGxlci50cyIsIm1hcHBpbmdzIjoiOzs7Ozs7Ozs7Ozs7Ozs7O0FBQUEsMkNBV3dCO0FBQ3hCLGtEQUFrRDtBQUNsRCx1REFBb0Q7QUFDcEQsbURBQWdEO0FBQ2hELHVEQUFvRDtBQUNwRCxtREFBK0M7QUFJeEMsSUFBTSxlQUFlLEdBQXJCLE1BQU0sZUFBZTtJQUNHO0lBQTdCLFlBQTZCLFlBQTBCO1FBQTFCLGlCQUFZLEdBQVosWUFBWSxDQUFjO0lBQUcsQ0FBQztJQUczRCxJQUFJLENBQXVCLFdBQW1CO1FBQzVDLE9BQU8sSUFBSSxDQUFDLFlBQVksQ0FBQyxJQUFJLENBQUMsV0FBVyxDQUFDLENBQUM7SUFDN0MsQ0FBQztJQUdELE9BQU8sQ0FBYyxFQUFVLEVBQXdCLFdBQW1CO1FBQ3hFLE9BQU8sSUFBSSxDQUFDLFlBQVksQ0FBQyxPQUFPLENBQUMsRUFBRSxFQUFFLFdBQVcsQ0FBQyxDQUFDO0lBQ3BELENBQUM7SUFHRCxNQUFNLENBQ2tCLFdBQW1CLEVBQ2xDLEdBQVEsRUFDUCxHQUFrQjtRQUUxQixPQUFPLElBQUksQ0FBQyxZQUFZLENBQUMsTUFBTSxDQUFDLFdBQVcsRUFBRSxHQUFHLENBQUMsSUFBSSxDQUFDLEVBQUUsRUFBRSxHQUFHLENBQUMsQ0FBQztJQUNqRSxDQUFDO0lBR0QsTUFBTSxDQUNTLEVBQVUsRUFDRCxXQUFtQixFQUNsQyxHQUFRLEVBQ1AsR0FBa0I7UUFFMUIsT0FBTyxJQUFJLENBQUMsWUFBWSxDQUFDLE1BQU0sQ0FBQyxFQUFFLEVBQUUsV0FBVyxFQUFFLEdBQUcsQ0FBQyxJQUFJLENBQUMsRUFBRSxFQUFFLEdBQUcsQ0FBQyxDQUFDO0lBQ3JFLENBQUM7SUFHRCxJQUFJLENBQ1csRUFBVSxFQUNELFdBQW1CLEVBQ2pDLEdBQWdCO1FBRXhCLE9BQU8sSUFBSSxDQUFDLFlBQVksQ0FBQyxJQUFJLENBQUMsRUFBRSxFQUFFLFdBQVcsRUFBRSxHQUFHLENBQUMsQ0FBQztJQUN0RCxDQUFDO0lBR0QsTUFBTSxDQUFjLEVBQVUsRUFBd0IsV0FBbUI7UUFDdkUsT0FBTyxJQUFJLENBQUMsWUFBWSxDQUFDLE1BQU0sQ0FBQyxFQUFFLEVBQUUsV0FBVyxDQUFDLENBQUM7SUFDbkQsQ0FBQztDQUNGLENBQUE7QUE3Q1ksMENBQWU7QUFJMUI7SUFEQyxJQUFBLFlBQUcsR0FBRTtJQUNBLFdBQUEsSUFBQSxjQUFLLEVBQUMsYUFBYSxDQUFDLENBQUE7Ozs7MkNBRXpCO0FBR0Q7SUFEQyxJQUFBLFlBQUcsRUFBQyxLQUFLLENBQUM7SUFDRixXQUFBLElBQUEsY0FBSyxFQUFDLElBQUksQ0FBQyxDQUFBO0lBQWMsV0FBQSxJQUFBLGNBQUssRUFBQyxhQUFhLENBQUMsQ0FBQTs7Ozs4Q0FFckQ7QUFHRDtJQURDLElBQUEsYUFBSSxHQUFFO0lBRUosV0FBQSxJQUFBLGNBQUssRUFBQyxhQUFhLENBQUMsQ0FBQTtJQUNwQixXQUFBLElBQUEsWUFBRyxHQUFFLENBQUE7SUFDTCxXQUFBLElBQUEsYUFBSSxHQUFFLENBQUE7O3lFQUFNLDZCQUFhLG9CQUFiLDZCQUFhOzs2Q0FHM0I7QUFHRDtJQURDLElBQUEsY0FBSyxFQUFDLEtBQUssQ0FBQztJQUVWLFdBQUEsSUFBQSxjQUFLLEVBQUMsSUFBSSxDQUFDLENBQUE7SUFDWCxXQUFBLElBQUEsY0FBSyxFQUFDLGFBQWEsQ0FBQyxDQUFBO0lBQ3BCLFdBQUEsSUFBQSxZQUFHLEdBQUUsQ0FBQTtJQUNMLFdBQUEsSUFBQSxhQUFJLEdBQUUsQ0FBQTs7aUZBQU0sNkJBQWEsb0JBQWIsNkJBQWE7OzZDQUczQjtBQUdEO0lBREMsSUFBQSxjQUFLLEVBQUMsVUFBVSxDQUFDO0lBRWYsV0FBQSxJQUFBLGNBQUssRUFBQyxJQUFJLENBQUMsQ0FBQTtJQUNYLFdBQUEsSUFBQSxjQUFLLEVBQUMsYUFBYSxDQUFDLENBQUE7SUFDcEIsV0FBQSxJQUFBLGFBQUksR0FBRSxDQUFBOzt5RUFBTSx5QkFBVyxvQkFBWCx5QkFBVzs7MkNBR3pCO0FBR0Q7SUFEQyxJQUFBLGVBQU0sRUFBQyxLQUFLLENBQUM7SUFDTixXQUFBLElBQUEsY0FBSyxFQUFDLElBQUksQ0FBQyxDQUFBO0lBQWMsV0FBQSxJQUFBLGNBQUssRUFBQyxhQUFhLENBQUMsQ0FBQTs7Ozs2Q0FFcEQ7MEJBNUNVLGVBQWU7SUFGM0IsSUFBQSxrQkFBUyxFQUFDLHdCQUFZLENBQUM7SUFDdkIsSUFBQSxtQkFBVSxFQUFDLE9BQU8sQ0FBQzt5REFFeUIsNEJBQVksb0JBQVosNEJBQVk7R0FENUMsZUFBZSxDQTZDM0IiLCJuYW1lcyI6W10sInNvdXJjZXMiOlsiQzpcXFVzZXJzXFxmZXl0ZWxsMlxcRG9jdW1lbnRzXFxwcm9qZWN0c1xcbGluZS10YXNrZXJcXGFwcHNcXGFwaVxcc3JjXFxub3Rlc1xcbm90ZXMuY29udHJvbGxlci50cyJdLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQge1xyXG4gIEJvZHksXHJcbiAgQ29udHJvbGxlcixcclxuICBEZWxldGUsXHJcbiAgR2V0LFxyXG4gIFBhcmFtLFxyXG4gIFBhdGNoLFxyXG4gIFBvc3QsXHJcbiAgUXVlcnksXHJcbiAgUmVxLFxyXG4gIFVzZUd1YXJkcyxcclxufSBmcm9tIFwiQG5lc3Rqcy9jb21tb25cIjtcclxuaW1wb3J0IHsgSnd0QXV0aEd1YXJkIH0gZnJvbSBcInNyYy9hdXRoL2p3dC5ndWFyZFwiO1xyXG5pbXBvcnQgeyBDcmVhdGVOb3RlRHRvIH0gZnJvbSBcIi4vZHRvL2NyZWF0ZU5vdGVEVE9cIjtcclxuaW1wb3J0IHsgTW92ZU5vdGVEdG8gfSBmcm9tIFwiLi9kdG8vbW92ZU5vdGVEVE9cIjtcclxuaW1wb3J0IHsgVXBkYXRlTm90ZUR0byB9IGZyb20gXCIuL2R0by91cGRhdGVOb3RlRFRPXCI7XHJcbmltcG9ydCB7IE5vdGVzU2VydmljZSB9IGZyb20gXCIuL25vdGVzLnNlcnZpY2VcIjtcclxuXHJcbkBVc2VHdWFyZHMoSnd0QXV0aEd1YXJkKVxyXG5AQ29udHJvbGxlcihcIm5vdGVzXCIpXHJcbmV4cG9ydCBjbGFzcyBOb3Rlc0NvbnRyb2xsZXIge1xyXG4gIGNvbnN0cnVjdG9yKHByaXZhdGUgcmVhZG9ubHkgbm90ZXNTZXJ2aWNlOiBOb3Rlc1NlcnZpY2UpIHt9XHJcblxyXG4gIEBHZXQoKVxyXG4gIGxpc3QoQFF1ZXJ5KFwid29ya3NwYWNlSWRcIikgd29ya3NwYWNlSWQ6IHN0cmluZykge1xyXG4gICAgcmV0dXJuIHRoaXMubm90ZXNTZXJ2aWNlLmxpc3Qod29ya3NwYWNlSWQpO1xyXG4gIH1cclxuXHJcbiAgQEdldChcIjppZFwiKVxyXG4gIGdldEJ5SWQoQFBhcmFtKFwiaWRcIikgaWQ6IHN0cmluZywgQFF1ZXJ5KFwid29ya3NwYWNlSWRcIikgd29ya3NwYWNlSWQ6IHN0cmluZykge1xyXG4gICAgcmV0dXJuIHRoaXMubm90ZXNTZXJ2aWNlLmdldEJ5SWQoaWQsIHdvcmtzcGFjZUlkKTtcclxuICB9XHJcblxyXG4gIEBQb3N0KClcclxuICBjcmVhdGUoXHJcbiAgICBAUXVlcnkoXCJ3b3Jrc3BhY2VJZFwiKSB3b3Jrc3BhY2VJZDogc3RyaW5nLFxyXG4gICAgQFJlcSgpIHJlcTogYW55LFxyXG4gICAgQEJvZHkoKSBkdG86IENyZWF0ZU5vdGVEdG8sXHJcbiAgKSB7XHJcbiAgICByZXR1cm4gdGhpcy5ub3Rlc1NlcnZpY2UuY3JlYXRlKHdvcmtzcGFjZUlkLCByZXEudXNlci5pZCwgZHRvKTtcclxuICB9XHJcblxyXG4gIEBQYXRjaChcIjppZFwiKVxyXG4gIHVwZGF0ZShcclxuICAgIEBQYXJhbShcImlkXCIpIGlkOiBzdHJpbmcsXHJcbiAgICBAUXVlcnkoXCJ3b3Jrc3BhY2VJZFwiKSB3b3Jrc3BhY2VJZDogc3RyaW5nLFxyXG4gICAgQFJlcSgpIHJlcTogYW55LFxyXG4gICAgQEJvZHkoKSBkdG86IFVwZGF0ZU5vdGVEdG8sXHJcbiAgKSB7XHJcbiAgICByZXR1cm4gdGhpcy5ub3Rlc1NlcnZpY2UudXBkYXRlKGlkLCB3b3Jrc3BhY2VJZCwgcmVxLnVzZXIuaWQsIGR0byk7XHJcbiAgfVxyXG5cclxuICBAUGF0Y2goXCI6aWQvbW92ZVwiKVxyXG4gIG1vdmUoXHJcbiAgICBAUGFyYW0oXCJpZFwiKSBpZDogc3RyaW5nLFxyXG4gICAgQFF1ZXJ5KFwid29ya3NwYWNlSWRcIikgd29ya3NwYWNlSWQ6IHN0cmluZyxcclxuICAgIEBCb2R5KCkgZHRvOiBNb3ZlTm90ZUR0byxcclxuICApIHtcclxuICAgIHJldHVybiB0aGlzLm5vdGVzU2VydmljZS5tb3ZlKGlkLCB3b3Jrc3BhY2VJZCwgZHRvKTtcclxuICB9XHJcblxyXG4gIEBEZWxldGUoXCI6aWRcIilcclxuICByZW1vdmUoQFBhcmFtKFwiaWRcIikgaWQ6IHN0cmluZywgQFF1ZXJ5KFwid29ya3NwYWNlSWRcIikgd29ya3NwYWNlSWQ6IHN0cmluZykge1xyXG4gICAgcmV0dXJuIHRoaXMubm90ZXNTZXJ2aWNlLnJlbW92ZShpZCwgd29ya3NwYWNlSWQpO1xyXG4gIH1cclxufVxyXG4iXSwidmVyc2lvbiI6M30=

@@ -1,0 +1,43 @@
+024f3bf9ee4f9e0d1d87257118a9667d
+"use strict";
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.CreateFolderDto = exports.FolderKindDto = void 0;
+const class_validator_1 = require("class-validator");
+var FolderKindDto;
+(function (FolderKindDto) {
+    FolderKindDto["ROOT"] = "ROOT";
+    FolderKindDto["NOTES"] = "NOTES";
+    FolderKindDto["TASKS"] = "TASKS";
+    FolderKindDto["MIXED"] = "MIXED";
+})(FolderKindDto || (exports.FolderKindDto = FolderKindDto = {}));
+class CreateFolderDto {
+    name;
+    parentId;
+    kind;
+}
+exports.CreateFolderDto = CreateFolderDto;
+__decorate([
+    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.Length)(1, 80),
+    __metadata("design:type", String)
+], CreateFolderDto.prototype, "name", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], CreateFolderDto.prototype, "parentId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(FolderKindDto),
+    __metadata("design:type", String)
+], CreateFolderDto.prototype, "kind", void 0);
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJmaWxlIjoiQzpcXFVzZXJzXFxmZXl0ZWxsMlxcRG9jdW1lbnRzXFxwcm9qZWN0c1xcbGluZS10YXNrZXJcXGFwcHNcXGFwaVxcc3JjXFxmb2xkZXJzXFxkdG9cXGNyZWF0ZUZvbGRlckRUTy50cyIsIm1hcHBpbmdzIjoiOzs7Ozs7Ozs7Ozs7QUFBQSxxREFBdUU7QUFFdkUsSUFBWSxhQUtYO0FBTEQsV0FBWSxhQUFhO0lBQ3ZCLDhCQUFhLENBQUE7SUFDYixnQ0FBZSxDQUFBO0lBQ2YsZ0NBQWUsQ0FBQTtJQUNmLGdDQUFlLENBQUE7QUFDakIsQ0FBQyxFQUxXLGFBQWEsNkJBQWIsYUFBYSxRQUt4QjtBQUVELE1BQWEsZUFBZTtJQUcxQixJQUFJLENBQVM7SUFJYixRQUFRLENBQVU7SUFJbEIsSUFBSSxDQUFpQjtDQUN0QjtBQVpELDBDQVlDO0FBVEM7SUFGQyxJQUFBLDBCQUFRLEdBQUU7SUFDVixJQUFBLHdCQUFNLEVBQUMsQ0FBQyxFQUFFLEVBQUUsQ0FBQzs7NkNBQ0Q7QUFJYjtJQUZDLElBQUEsNEJBQVUsR0FBRTtJQUNaLElBQUEsMEJBQVEsR0FBRTs7aURBQ087QUFJbEI7SUFGQyxJQUFBLDRCQUFVLEdBQUU7SUFDWixJQUFBLHdCQUFNLEVBQUMsYUFBYSxDQUFDOzs2Q0FDRCIsIm5hbWVzIjpbXSwic291cmNlcyI6WyJDOlxcVXNlcnNcXGZleXRlbGwyXFxEb2N1bWVudHNcXHByb2plY3RzXFxsaW5lLXRhc2tlclxcYXBwc1xcYXBpXFxzcmNcXGZvbGRlcnNcXGR0b1xcY3JlYXRlRm9sZGVyRFRPLnRzIl0sInNvdXJjZXNDb250ZW50IjpbImltcG9ydCB7IElzRW51bSwgSXNPcHRpb25hbCwgSXNTdHJpbmcsIExlbmd0aCB9IGZyb20gXCJjbGFzcy12YWxpZGF0b3JcIjtcclxuXHJcbmV4cG9ydCBlbnVtIEZvbGRlcktpbmREdG8ge1xyXG4gIFJPT1QgPSBcIlJPT1RcIixcclxuICBOT1RFUyA9IFwiTk9URVNcIixcclxuICBUQVNLUyA9IFwiVEFTS1NcIixcclxuICBNSVhFRCA9IFwiTUlYRURcIixcclxufVxyXG5cclxuZXhwb3J0IGNsYXNzIENyZWF0ZUZvbGRlckR0byB7XHJcbiAgQElzU3RyaW5nKClcclxuICBATGVuZ3RoKDEsIDgwKVxyXG4gIG5hbWU6IHN0cmluZztcclxuXHJcbiAgQElzT3B0aW9uYWwoKVxyXG4gIEBJc1N0cmluZygpXHJcbiAgcGFyZW50SWQ/OiBzdHJpbmc7XHJcblxyXG4gIEBJc09wdGlvbmFsKClcclxuICBASXNFbnVtKEZvbGRlcktpbmREdG8pXHJcbiAga2luZD86IEZvbGRlcktpbmREdG87XHJcbn0iXSwidmVyc2lvbiI6M30=

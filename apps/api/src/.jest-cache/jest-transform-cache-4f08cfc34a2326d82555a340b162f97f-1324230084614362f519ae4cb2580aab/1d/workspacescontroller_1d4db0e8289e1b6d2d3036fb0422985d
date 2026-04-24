@@ -1,0 +1,86 @@
+cee8d751651159934879ef6b07403076
+"use strict";
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __param = (this && this.__param) || function (paramIndex, decorator) {
+    return function (target, key) { decorator(target, key, paramIndex); }
+};
+var _a, _b;
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.WorkspacesController = void 0;
+const common_1 = require("@nestjs/common");
+const jwt_guard_1 = require("src/auth/jwt.guard");
+const workspaces_service_1 = require("./workspaces.service");
+const createWorkspacesDTO_1 = require("./dto/createWorkspacesDTO");
+let WorkspacesController = class WorkspacesController {
+    workspacesService;
+    constructor(workspacesService) {
+        this.workspacesService = workspacesService;
+    }
+    getMine(req) {
+        return this.workspacesService.getMine(req.user.id);
+    }
+    getMineLegacy(req) {
+        return this.workspacesService.getMine(req.user.id);
+    }
+    getOne(req, id) {
+        return this.workspacesService.getOne(req.user.id, id);
+    }
+    create(req, dto) {
+        return this.workspacesService.create(req.user.id, dto);
+    }
+    bootstrap(req) {
+        return this.workspacesService.bootstrap(req.user.id);
+    }
+};
+exports.WorkspacesController = WorkspacesController;
+__decorate([
+    (0, common_1.Get)(),
+    __param(0, (0, common_1.Req)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", void 0)
+], WorkspacesController.prototype, "getMine", null);
+__decorate([
+    (0, common_1.Get)("me"),
+    __param(0, (0, common_1.Req)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", void 0)
+], WorkspacesController.prototype, "getMineLegacy", null);
+__decorate([
+    (0, common_1.Get)(":id"),
+    __param(0, (0, common_1.Req)()),
+    __param(1, (0, common_1.Param)("id")),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, String]),
+    __metadata("design:returntype", void 0)
+], WorkspacesController.prototype, "getOne", null);
+__decorate([
+    (0, common_1.Post)(),
+    __param(0, (0, common_1.Req)()),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, typeof (_b = typeof createWorkspacesDTO_1.CreateWorkspaceDto !== "undefined" && createWorkspacesDTO_1.CreateWorkspaceDto) === "function" ? _b : Object]),
+    __metadata("design:returntype", void 0)
+], WorkspacesController.prototype, "create", null);
+__decorate([
+    (0, common_1.Post)("bootstrap"),
+    __param(0, (0, common_1.Req)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", void 0)
+], WorkspacesController.prototype, "bootstrap", null);
+exports.WorkspacesController = WorkspacesController = __decorate([
+    (0, common_1.UseGuards)(jwt_guard_1.JwtAuthGuard),
+    (0, common_1.Controller)("workspaces"),
+    __metadata("design:paramtypes", [typeof (_a = typeof workspaces_service_1.WorkspacesService !== "undefined" && workspaces_service_1.WorkspacesService) === "function" ? _a : Object])
+], WorkspacesController);
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJmaWxlIjoiQzpcXFVzZXJzXFxmZXl0ZWxsMlxcRG9jdW1lbnRzXFxwcm9qZWN0c1xcbGluZS10YXNrZXJcXGFwcHNcXGFwaVxcc3JjXFx3b3Jrc3BhY2VzXFx3b3Jrc3BhY2VzLmNvbnRyb2xsZXIudHMiLCJtYXBwaW5ncyI6Ijs7Ozs7Ozs7Ozs7Ozs7OztBQUFBLDJDQUFvRjtBQUNwRixrREFBa0Q7QUFDbEQsNkRBQXlEO0FBQ3pELG1FQUErRDtBQUl4RCxJQUFNLG9CQUFvQixHQUExQixNQUFNLG9CQUFvQjtJQUNGO0lBQTdCLFlBQTZCLGlCQUFvQztRQUFwQyxzQkFBaUIsR0FBakIsaUJBQWlCLENBQW1CO0lBQUksQ0FBQztJQUd0RSxPQUFPLENBQVEsR0FBUTtRQUNyQixPQUFPLElBQUksQ0FBQyxpQkFBaUIsQ0FBQyxPQUFPLENBQUMsR0FBRyxDQUFDLElBQUksQ0FBQyxFQUFFLENBQUMsQ0FBQztJQUNyRCxDQUFDO0lBR0QsYUFBYSxDQUFRLEdBQVE7UUFDM0IsT0FBTyxJQUFJLENBQUMsaUJBQWlCLENBQUMsT0FBTyxDQUFDLEdBQUcsQ0FBQyxJQUFJLENBQUMsRUFBRSxDQUFDLENBQUM7SUFDckQsQ0FBQztJQUdELE1BQU0sQ0FBUSxHQUFRLEVBQWUsRUFBVTtRQUM3QyxPQUFPLElBQUksQ0FBQyxpQkFBaUIsQ0FBQyxNQUFNLENBQUMsR0FBRyxDQUFDLElBQUksQ0FBQyxFQUFFLEVBQUUsRUFBRSxDQUFDLENBQUM7SUFDeEQsQ0FBQztJQUdELE1BQU0sQ0FBUSxHQUFRLEVBQVUsR0FBdUI7UUFDckQsT0FBTyxJQUFJLENBQUMsaUJBQWlCLENBQUMsTUFBTSxDQUFDLEdBQUcsQ0FBQyxJQUFJLENBQUMsRUFBRSxFQUFFLEdBQUcsQ0FBQyxDQUFDO0lBQ3pELENBQUM7SUFHRCxTQUFTLENBQVEsR0FBUTtRQUN2QixPQUFPLElBQUksQ0FBQyxpQkFBaUIsQ0FBQyxTQUFTLENBQUMsR0FBRyxDQUFDLElBQUksQ0FBQyxFQUFFLENBQUMsQ0FBQztJQUN2RCxDQUFDO0NBQ0YsQ0FBQTtBQTNCWSxvREFBb0I7QUFJL0I7SUFEQyxJQUFBLFlBQUcsR0FBRTtJQUNHLFdBQUEsSUFBQSxZQUFHLEdBQUUsQ0FBQTs7OzttREFFYjtBQUdEO0lBREMsSUFBQSxZQUFHLEVBQUMsSUFBSSxDQUFDO0lBQ0ssV0FBQSxJQUFBLFlBQUcsR0FBRSxDQUFBOzs7O3lEQUVuQjtBQUdEO0lBREMsSUFBQSxZQUFHLEVBQUMsS0FBSyxDQUFDO0lBQ0gsV0FBQSxJQUFBLFlBQUcsR0FBRSxDQUFBO0lBQVksV0FBQSxJQUFBLGNBQUssRUFBQyxJQUFJLENBQUMsQ0FBQTs7OztrREFFbkM7QUFHRDtJQURDLElBQUEsYUFBSSxHQUFFO0lBQ0MsV0FBQSxJQUFBLFlBQUcsR0FBRSxDQUFBO0lBQVksV0FBQSxJQUFBLGFBQUksR0FBRSxDQUFBOztpRUFBTSx3Q0FBa0Isb0JBQWxCLHdDQUFrQjs7a0RBRXREO0FBR0Q7SUFEQyxJQUFBLGFBQUksRUFBQyxXQUFXLENBQUM7SUFDUCxXQUFBLElBQUEsWUFBRyxHQUFFLENBQUE7Ozs7cURBRWY7K0JBMUJVLG9CQUFvQjtJQUZoQyxJQUFBLGtCQUFTLEVBQUMsd0JBQVksQ0FBQztJQUN2QixJQUFBLG1CQUFVLEVBQUMsWUFBWSxDQUFDO3lEQUV5QixzQ0FBaUIsb0JBQWpCLHNDQUFpQjtHQUR0RCxvQkFBb0IsQ0EyQmhDIiwibmFtZXMiOltdLCJzb3VyY2VzIjpbIkM6XFxVc2Vyc1xcZmV5dGVsbDJcXERvY3VtZW50c1xccHJvamVjdHNcXGxpbmUtdGFza2VyXFxhcHBzXFxhcGlcXHNyY1xcd29ya3NwYWNlc1xcd29ya3NwYWNlcy5jb250cm9sbGVyLnRzIl0sInNvdXJjZXNDb250ZW50IjpbImltcG9ydCB7IEJvZHksIENvbnRyb2xsZXIsIEdldCwgUGFyYW0sIFBvc3QsIFJlcSwgVXNlR3VhcmRzIH0gZnJvbSBcIkBuZXN0anMvY29tbW9uXCI7XG5pbXBvcnQgeyBKd3RBdXRoR3VhcmQgfSBmcm9tIFwic3JjL2F1dGgvand0Lmd1YXJkXCI7XG5pbXBvcnQgeyBXb3Jrc3BhY2VzU2VydmljZSB9IGZyb20gXCIuL3dvcmtzcGFjZXMuc2VydmljZVwiO1xuaW1wb3J0IHsgQ3JlYXRlV29ya3NwYWNlRHRvIH0gZnJvbSBcIi4vZHRvL2NyZWF0ZVdvcmtzcGFjZXNEVE9cIjtcblxuQFVzZUd1YXJkcyhKd3RBdXRoR3VhcmQpXG5AQ29udHJvbGxlcihcIndvcmtzcGFjZXNcIilcbmV4cG9ydCBjbGFzcyBXb3Jrc3BhY2VzQ29udHJvbGxlciB7XG4gIGNvbnN0cnVjdG9yKHByaXZhdGUgcmVhZG9ubHkgd29ya3NwYWNlc1NlcnZpY2U6IFdvcmtzcGFjZXNTZXJ2aWNlKSB7IH1cblxuICBAR2V0KClcbiAgZ2V0TWluZShAUmVxKCkgcmVxOiBhbnkpIHtcbiAgICByZXR1cm4gdGhpcy53b3Jrc3BhY2VzU2VydmljZS5nZXRNaW5lKHJlcS51c2VyLmlkKTtcbiAgfVxuXG4gIEBHZXQoXCJtZVwiKVxuICBnZXRNaW5lTGVnYWN5KEBSZXEoKSByZXE6IGFueSkge1xuICAgIHJldHVybiB0aGlzLndvcmtzcGFjZXNTZXJ2aWNlLmdldE1pbmUocmVxLnVzZXIuaWQpO1xuICB9XG5cbiAgQEdldChcIjppZFwiKVxuICBnZXRPbmUoQFJlcSgpIHJlcTogYW55LCBAUGFyYW0oXCJpZFwiKSBpZDogc3RyaW5nKSB7XG4gICAgcmV0dXJuIHRoaXMud29ya3NwYWNlc1NlcnZpY2UuZ2V0T25lKHJlcS51c2VyLmlkLCBpZCk7XG4gIH1cblxuICBAUG9zdCgpXG4gIGNyZWF0ZShAUmVxKCkgcmVxOiBhbnksIEBCb2R5KCkgZHRvOiBDcmVhdGVXb3Jrc3BhY2VEdG8pIHtcbiAgICByZXR1cm4gdGhpcy53b3Jrc3BhY2VzU2VydmljZS5jcmVhdGUocmVxLnVzZXIuaWQsIGR0byk7XG4gIH1cblxuICBAUG9zdChcImJvb3RzdHJhcFwiKVxuICBib290c3RyYXAoQFJlcSgpIHJlcTogYW55KSB7XG4gICAgcmV0dXJuIHRoaXMud29ya3NwYWNlc1NlcnZpY2UuYm9vdHN0cmFwKHJlcS51c2VyLmlkKTtcbiAgfVxufVxuIl0sInZlcnNpb24iOjN9

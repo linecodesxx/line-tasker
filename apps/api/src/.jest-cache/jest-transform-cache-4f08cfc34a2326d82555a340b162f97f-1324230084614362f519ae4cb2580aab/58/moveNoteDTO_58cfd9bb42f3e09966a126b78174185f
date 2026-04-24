@@ -1,0 +1,24 @@
+d83bc28b993ba3423212d186c8c47ad3
+"use strict";
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.MoveNoteDto = void 0;
+const class_validator_1 = require("class-validator");
+class MoveNoteDto {
+    folderId;
+}
+exports.MoveNoteDto = MoveNoteDto;
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", Object)
+], MoveNoteDto.prototype, "folderId", void 0);
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJmaWxlIjoiQzpcXFVzZXJzXFxmZXl0ZWxsMlxcRG9jdW1lbnRzXFxwcm9qZWN0c1xcbGluZS10YXNrZXJcXGFwcHNcXGFwaVxcc3JjXFxub3Rlc1xcZHRvXFxtb3ZlTm90ZURUTy50cyIsIm1hcHBpbmdzIjoiOzs7Ozs7Ozs7Ozs7QUFBQSxxREFBdUQ7QUFFdkQsTUFBYSxXQUFXO0lBR3RCLFFBQVEsQ0FBaUI7Q0FDMUI7QUFKRCxrQ0FJQztBQURDO0lBRkMsSUFBQSw0QkFBVSxHQUFFO0lBQ1osSUFBQSwwQkFBUSxHQUFFOzs2Q0FDYyIsIm5hbWVzIjpbXSwic291cmNlcyI6WyJDOlxcVXNlcnNcXGZleXRlbGwyXFxEb2N1bWVudHNcXHByb2plY3RzXFxsaW5lLXRhc2tlclxcYXBwc1xcYXBpXFxzcmNcXG5vdGVzXFxkdG9cXG1vdmVOb3RlRFRPLnRzIl0sInNvdXJjZXNDb250ZW50IjpbImltcG9ydCB7IElzT3B0aW9uYWwsIElzU3RyaW5nIH0gZnJvbSBcImNsYXNzLXZhbGlkYXRvclwiO1xyXG5cclxuZXhwb3J0IGNsYXNzIE1vdmVOb3RlRHRvIHtcclxuICBASXNPcHRpb25hbCgpXHJcbiAgQElzU3RyaW5nKClcclxuICBmb2xkZXJJZD86IHN0cmluZyB8IG51bGw7XHJcbn0iXSwidmVyc2lvbiI6M30=

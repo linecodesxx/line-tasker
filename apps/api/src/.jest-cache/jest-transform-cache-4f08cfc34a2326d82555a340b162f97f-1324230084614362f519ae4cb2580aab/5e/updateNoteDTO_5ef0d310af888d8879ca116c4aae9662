@@ -1,0 +1,46 @@
+87cccb7c3ed45ceae5d547044c0223e7
+"use strict";
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.UpdateNoteDto = void 0;
+const class_validator_1 = require("class-validator");
+const class_transformer_1 = require("class-transformer");
+class UpdateNoteDto {
+    title;
+    contentMd;
+    folderId;
+    version;
+}
+exports.UpdateNoteDto = UpdateNoteDto;
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.Length)(1, 160),
+    __metadata("design:type", String)
+], UpdateNoteDto.prototype, "title", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], UpdateNoteDto.prototype, "contentMd", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", Object)
+], UpdateNoteDto.prototype, "folderId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_transformer_1.Type)(() => Number),
+    (0, class_validator_1.IsInt)(),
+    (0, class_validator_1.Min)(1),
+    __metadata("design:type", Number)
+], UpdateNoteDto.prototype, "version", void 0);
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJmaWxlIjoiQzpcXFVzZXJzXFxmZXl0ZWxsMlxcRG9jdW1lbnRzXFxwcm9qZWN0c1xcbGluZS10YXNrZXJcXGFwcHNcXGFwaVxcc3JjXFxub3Rlc1xcZHRvXFx1cGRhdGVOb3RlRFRPLnRzIiwibWFwcGluZ3MiOiI7Ozs7Ozs7Ozs7OztBQUFBLHFEQUEyRTtBQUMzRSx5REFBeUM7QUFFekMsTUFBYSxhQUFhO0lBSXhCLEtBQUssQ0FBVTtJQUlmLFNBQVMsQ0FBVTtJQUluQixRQUFRLENBQWlCO0lBTXpCLE9BQU8sQ0FBVTtDQUNsQjtBQW5CRCxzQ0FtQkM7QUFmQztJQUhDLElBQUEsNEJBQVUsR0FBRTtJQUNaLElBQUEsMEJBQVEsR0FBRTtJQUNWLElBQUEsd0JBQU0sRUFBQyxDQUFDLEVBQUUsR0FBRyxDQUFDOzs0Q0FDQTtBQUlmO0lBRkMsSUFBQSw0QkFBVSxHQUFFO0lBQ1osSUFBQSwwQkFBUSxHQUFFOztnREFDUTtBQUluQjtJQUZDLElBQUEsNEJBQVUsR0FBRTtJQUNaLElBQUEsMEJBQVEsR0FBRTs7K0NBQ2M7QUFNekI7SUFKQyxJQUFBLDRCQUFVLEdBQUU7SUFDWixJQUFBLHdCQUFJLEVBQUMsR0FBRyxFQUFFLENBQUMsTUFBTSxDQUFDO0lBQ2xCLElBQUEsdUJBQUssR0FBRTtJQUNQLElBQUEscUJBQUcsRUFBQyxDQUFDLENBQUM7OzhDQUNVIiwibmFtZXMiOltdLCJzb3VyY2VzIjpbIkM6XFxVc2Vyc1xcZmV5dGVsbDJcXERvY3VtZW50c1xccHJvamVjdHNcXGxpbmUtdGFza2VyXFxhcHBzXFxhcGlcXHNyY1xcbm90ZXNcXGR0b1xcdXBkYXRlTm90ZURUTy50cyJdLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgeyBJc09wdGlvbmFsLCBJc1N0cmluZywgTGVuZ3RoLCBJc0ludCwgTWluIH0gZnJvbSBcImNsYXNzLXZhbGlkYXRvclwiO1xyXG5pbXBvcnQgeyBUeXBlIH0gZnJvbSBcImNsYXNzLXRyYW5zZm9ybWVyXCI7XHJcblxyXG5leHBvcnQgY2xhc3MgVXBkYXRlTm90ZUR0byB7XHJcbiAgQElzT3B0aW9uYWwoKVxyXG4gIEBJc1N0cmluZygpXHJcbiAgQExlbmd0aCgxLCAxNjApXHJcbiAgdGl0bGU/OiBzdHJpbmc7XHJcblxyXG4gIEBJc09wdGlvbmFsKClcclxuICBASXNTdHJpbmcoKVxyXG4gIGNvbnRlbnRNZD86IHN0cmluZztcclxuXHJcbiAgQElzT3B0aW9uYWwoKVxyXG4gIEBJc1N0cmluZygpXHJcbiAgZm9sZGVySWQ/OiBzdHJpbmcgfCBudWxsO1xyXG5cclxuICBASXNPcHRpb25hbCgpXHJcbiAgQFR5cGUoKCkgPT4gTnVtYmVyKVxyXG4gIEBJc0ludCgpXHJcbiAgQE1pbigxKVxyXG4gIHZlcnNpb24/OiBudW1iZXI7XHJcbn0iXSwidmVyc2lvbiI6M30=
