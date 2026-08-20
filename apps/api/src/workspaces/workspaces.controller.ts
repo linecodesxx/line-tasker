@@ -36,13 +36,8 @@ export class WorkspacesController {
     return this.workspacesService.create(req.user.id, dto);
   }
 
-  @Post("bootstrap")
-  bootstrap(@Req() req: any) {
-    return this.workspacesService.bootstrap(req.user.id);
-  }
-
   @Get(":workspaceId/fs")
-  getFileSystem(@Param("workspaceId") workspaceId: string) {
-    return this.workspacesService.getFileSystem(workspaceId);
+  getFileSystem(@Req() req: any, @Param("workspaceId") workspaceId: string) {
+    return this.workspacesService.getFileSystem(req.user.id, workspaceId);
   }
 }

@@ -23,38 +23,45 @@ export class FoldersController {
   constructor(private readonly foldersService: FoldersService) {}
 
   @Get("tree")
-  getTree(@Query("workspaceId") workspaceId: string) {
-    return this.foldersService.getTree(workspaceId);
+  getTree(@Req() req: any, @Query("workspaceId") workspaceId: string) {
+    return this.foldersService.getTree(req.user.id, workspaceId);
   }
 
   @Post()
   create(
+    @Req() req: any,
     @Query("workspaceId") workspaceId: string,
     @Body() dto: CreateFolderDto,
   ) {
-    return this.foldersService.create(workspaceId, dto);
+    return this.foldersService.create(req.user.id, workspaceId, dto);
   }
 
   @Patch(":id/rename")
   rename(
+    @Req() req: any,
     @Param("id") id: string,
     @Query("workspaceId") workspaceId: string,
     @Body() dto: RenameFolderDto,
   ) {
-    return this.foldersService.rename(id, workspaceId, dto);
+    return this.foldersService.rename(req.user.id, id, workspaceId, dto);
   }
 
   @Patch(":id/move")
   move(
+    @Req() req: any,
     @Param("id") id: string,
     @Query("workspaceId") workspaceId: string,
     @Body() dto: MoveFolderDto,
   ) {
-    return this.foldersService.move(id, workspaceId, dto);
+    return this.foldersService.move(req.user.id, id, workspaceId, dto);
   }
 
   @Delete(":id")
-  remove(@Param("id") id: string, @Query("workspaceId") workspaceId: string) {
-    return this.foldersService.remove(id, workspaceId);
+  remove(
+    @Req() req: any,
+    @Param("id") id: string,
+    @Query("workspaceId") workspaceId: string,
+  ) {
+    return this.foldersService.remove(req.user.id, id, workspaceId);
   }
 }

@@ -78,6 +78,11 @@ export function useWorkspaceEditor({
       setError("");
 
       try {
+        if (!workspaceId) {
+          return;
+        }
+
+
         const data = await getWorkspaceFs(workspaceId);
 
         if (!cancelled) {

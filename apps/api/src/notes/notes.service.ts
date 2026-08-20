@@ -13,7 +13,9 @@ import { slugify } from "./utils/slugify";
 export class NotesService {
   constructor(private readonly prisma: PrismaService) {}
 
-  async list(workspaceId: string) {
+  async list(ownerId: string, workspaceId: string) {
+    await this.ensureWorkspaceAccess(ownerId, workspaceId);
+
     return this.prisma.note.findMany({
       where: {
         workspaceId,
@@ -23,7 +25,9 @@ export class NotesService {
     });
   }
 
-  async getById(id: string, workspaceId: string) {
+  async getById(ownerId: string, id: string, workspaceId: string) {
+    await this.ensureWorkspaceAccess(ownerId, workspaceId);
+
     const note = await this.prisma.note.findFirst({
       where: {
         id,
@@ -39,7 +43,9 @@ export class NotesService {
     return note;
   }
 
-  async create(workspaceId: string, userId: string, dto: CreateNoteDto) {
+  async create(ownerId: string, workspaceId: string, dto: CreateNoteDto) {
+    await this.ensureWorkspaceAccess(ownerId, workspaceId);
+
     const slugBase = slugify(dto.title) || "untitled";
     const slug = await this.makeUniqueSlug(workspaceId, slugBase);
 
@@ -59,18 +65,18 @@ export class NotesService {
         contentMd: dto.contentMd ?? "",
         excerpt: "",
         version: 1,
-        lastEditedBy: userId,
+        lastEditedBy: ownerId,
       },
     });
   }
 
   async update(
+    ownerId: string,
     id: string,
     workspaceId: string,
-    userId: string,
     dto: UpdateNoteDto,
   ) {
-    const note = await this.getById(id, workspaceId);
+    const note = await this.getById(ownerId, id, workspaceId);
 
     if (dto.version && dto.version !== note.version) {
       throw new ConflictException("Version conflict");
@@ -107,13 +113,13 @@ export class NotesService {
         relativePath,
         excerpt: nextContent.slice(0, 180),
         version: { increment: 1 },
-        lastEditedBy: userId,
+        lastEditedBy: ownerId,
       },
     });
   }
 
-  async move(id: string, workspaceId: string, dto: MoveNoteDto) {
-    const note = await this.getById(id, workspaceId);
+  async move(ownerId: string, id: string, workspaceId: string, dto: MoveNoteDto) {
+    const note = await this.getById(ownerId, id, workspaceId);
     const folderId = dto.folderId ?? null;
     const folderPath = await this.getFolderPath(workspaceId, folderId);
     const relativePath = folderPath
@@ -130,8 +136,8 @@ export class NotesService {
     });
   }
 
-  async remove(id: string, workspaceId: string) {
-    await this.getById(id, workspaceId);
+  async remove(ownerId: string, id: string, workspaceId: string) {
+    await this.getById(ownerId, id, workspaceId);
 
     return this.prisma.note.update({
       where: { id },
@@ -187,5 +193,19 @@ export class NotesService {
     }
 
     return parts.join("/");
+  }
+
+  private async ensureWorkspaceAccess(ownerId: string, workspaceId: string) {
+    const workspace = await this.prisma.workspace.findFirst({
+      where: {
+        id: workspaceId,
+        ownerId,
+      },
+      select: { id: true },
+    });
+
+    if (!workspace) {
+      throw new NotFoundException("Workspace not found");
+    }
   }
 }

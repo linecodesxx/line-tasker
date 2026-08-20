@@ -15,7 +15,6 @@ describe("WorkspacesController", () => {
             getMine: jest.fn(),
             getOne: jest.fn(),
             create: jest.fn(),
-            bootstrap: jest.fn(),
           },
         },
       ],

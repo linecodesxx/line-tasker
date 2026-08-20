@@ -93,9 +93,9 @@ async function parseError(response: Response) {
       return data.message.join(", ");
     }
 
-    return data.message ?? "Ошибка пространства";
+    return data.message ?? "Ошибка workspace";
   } catch {
-    return "Ошибка пространства";
+    return "Ошибка workspace";
   }
 }
 
@@ -114,7 +114,7 @@ export function useWorkspaces() {
       const token = getToken();
 
       if (!token) {
-        throw new Error("Нужно войти в аккаунт");
+        throw new Error("Сначала войдите в аккаунт");
       }
 
       const response = await fetch(`${API_URL}${path}`, {
@@ -143,7 +143,7 @@ export function useWorkspaces() {
       setWorkspaces(data);
     } catch (err) {
       setError(
-        err instanceof Error ? err.message : "Не удалось загрузить пространства",
+        err instanceof Error ? err.message : "Не удалось загрузить workspaces",
       );
       setWorkspaces([]);
     } finally {
@@ -166,7 +166,7 @@ export function useWorkspaces() {
         return workspace;
       } catch (err) {
         const message =
-          err instanceof Error ? err.message : "Не удалось создать пространство";
+          err instanceof Error ? err.message : "Не удалось создать workspace";
         setError(message);
         throw new Error(message);
       } finally {
@@ -186,36 +186,6 @@ export function useWorkspaces() {
     [request],
   );
 
-  const bootstrapWorkspace = useCallback(async () => {
-    setError(null);
-    setIsCreating(true);
-
-    try {
-      const workspace = await request<Workspace>("/workspaces/bootstrap", {
-        method: "POST",
-      });
-
-      setWorkspaces((current) => {
-        if (current.some((item) => item.id === workspace.id)) {
-          return current;
-        }
-
-        return [...current, workspace].sort((a, b) =>
-          a.createdAt.localeCompare(b.createdAt),
-        );
-      });
-
-      return workspace;
-    } catch (err) {
-      const message =
-        err instanceof Error ? err.message : "Не удалось создать пространство";
-      setError(message);
-      throw new Error(message);
-    } finally {
-      setIsCreating(false);
-    }
-  }, [request]);
-
   useEffect(() => {
     let cancelled = false;
 
@@ -230,7 +200,9 @@ export function useWorkspaces() {
       } catch (err) {
         if (!cancelled) {
           setError(
-            err instanceof Error ? err.message : "Не удалось загрузить пространства",
+            err instanceof Error
+              ? err.message
+              : "Не удалось загрузить workspaces",
           );
           setWorkspaces([]);
         }
@@ -314,7 +286,6 @@ export function useWorkspaces() {
     getWorkspace,
     getWorkspaceFs,
     createWorkspace,
-    bootstrapWorkspace,
     updateNote,
     updateTask,
     createFolder,

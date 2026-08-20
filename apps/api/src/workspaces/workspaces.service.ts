@@ -59,46 +59,8 @@ export class WorkspacesService {
     return workspace;
   }
 
-  async bootstrap(ownerId: string) {
-    const existing = await this.prisma.workspace.findFirst({
-      where: {
-        ownerId,
-      },
-      include: { folders: true },
-      orderBy: {
-        createdAt: "asc",
-      },
-    });
-
-    if (existing) {
-      return existing;
-    }
-
-    return this.prisma.workspace.create({
-      data: {
-        ownerId,
-        title: "My Workspace",
-        folders: {
-          create: [
-            { name: "notes", kind: "NOTES" },
-            { name: "tasks", kind: "TASKS" },
-          ],
-        },
-      },
-      include: {
-        folders: true,
-      },
-    });
-  }
-
-  async getFileSystem(workspaceId: string) {
-    const workspace = await this.prisma.workspace.findUnique({
-      where: { id: workspaceId },
-    });
-
-    if (!workspace) {
-      throw new NotFoundException("Workspace not found");
-    }
+  async getFileSystem(ownerId: string, workspaceId: string) {
+    const workspace = await this.ensureWorkspaceAccess(ownerId, workspaceId);
 
     const [folders, notes, tasks] = await Promise.all([
       this.prisma.folder.findMany({
@@ -121,5 +83,20 @@ export class WorkspacesService {
       notes,
       tasks,
     };
+  }
+
+  private async ensureWorkspaceAccess(ownerId: string, workspaceId: string) {
+    const workspace = await this.prisma.workspace.findFirst({
+      where: {
+        id: workspaceId,
+        ownerId,
+      },
+    });
+
+    if (!workspace) {
+      throw new NotFoundException("Workspace not found");
+    }
+
+    return workspace;
   }
 }

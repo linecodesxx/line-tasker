@@ -22,45 +22,54 @@ export class NotesController {
   constructor(private readonly notesService: NotesService) {}
 
   @Get()
-  list(@Query("workspaceId") workspaceId: string) {
-    return this.notesService.list(workspaceId);
+  list(@Req() req: any, @Query("workspaceId") workspaceId: string) {
+    return this.notesService.list(req.user.id, workspaceId);
   }
 
   @Get(":id")
-  getById(@Param("id") id: string, @Query("workspaceId") workspaceId: string) {
-    return this.notesService.getById(id, workspaceId);
+  getById(
+    @Req() req: any,
+    @Param("id") id: string,
+    @Query("workspaceId") workspaceId: string,
+  ) {
+    return this.notesService.getById(req.user.id, id, workspaceId);
   }
 
   @Post()
   create(
-    @Query("workspaceId") workspaceId: string,
     @Req() req: any,
+    @Query("workspaceId") workspaceId: string,
     @Body() dto: CreateNoteDto,
   ) {
-    return this.notesService.create(workspaceId, req.user.id, dto);
+    return this.notesService.create(req.user.id, workspaceId, dto);
   }
 
   @Patch(":id")
   update(
+    @Req() req: any,
     @Param("id") id: string,
     @Query("workspaceId") workspaceId: string,
-    @Req() req: any,
     @Body() dto: UpdateNoteDto,
   ) {
-    return this.notesService.update(id, workspaceId, req.user.id, dto);
+    return this.notesService.update(req.user.id, id, workspaceId, dto);
   }
 
   @Patch(":id/move")
   move(
+    @Req() req: any,
     @Param("id") id: string,
     @Query("workspaceId") workspaceId: string,
     @Body() dto: MoveNoteDto,
   ) {
-    return this.notesService.move(id, workspaceId, dto);
+    return this.notesService.move(req.user.id, id, workspaceId, dto);
   }
 
   @Delete(":id")
-  remove(@Param("id") id: string, @Query("workspaceId") workspaceId: string) {
-    return this.notesService.remove(id, workspaceId);
+  remove(
+    @Req() req: any,
+    @Param("id") id: string,
+    @Query("workspaceId") workspaceId: string,
+  ) {
+    return this.notesService.remove(req.user.id, id, workspaceId);
   }
 }

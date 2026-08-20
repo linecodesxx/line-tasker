@@ -185,6 +185,8 @@
   },
   "active": "f6f89ab462a2118d",
   "lastOpenFiles": [
+    "pnpm-lock.yaml.2058278334",
+    "_tmp_24276_48ab5c03f12271f71165a660921853cb",
     "_tmp_22268_a6f420f989bb84c604e1e89e22eed7af",
     "apps/api/Dockerfile",
     "apps/web/components/workspace-editor/ExplorerPane.tsx",
@@ -194,8 +196,6 @@
     "apps/web/app/login/page.tsx",
     "apps/web/app/page.tsx",
     "pnpm-lock.yaml.3812952343",
-    "apps/web/components/base/Modal.tsx",
-    "apps/web/components/base",
     "apps/web/AGENTS.md",
     "WORKSPACE_ARCHITECTURE.md",
     "TODO.MD"

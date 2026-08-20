@@ -1,5 +1,7 @@
 # LineTasker — Roadmap Tasks
 
+> Карта связей: [[00 LineTasker Index]] · [[Product Map]] · [[Backlog Map]] · [[WORKSPACE_ARCHITECTURE|Architecture]]
+
 to install: pnpm --filter web add @tanstack/react-query axios zustand react-hook-form zod
 
 ## 0. Product foundation
@@ -557,3 +559,12 @@ to install: pnpm --filter web add @tanstack/react-query axios zustand react-hook
 - [ ] comments
 - [ ] shared workspaces
 - [ ] advanced editor
+
+---
+
+## Obsidian links
+
+- [[Product Map]] - зачем нужен продукт, core-домены и MVP-фокус.
+- [[Architecture Map]] - решения из раздела архитектурного проектирования.
+- [[Implementation Map]] - связь задач с текущими `apps/web`, `apps/api` и будущими `packages/*`.
+- [[Backlog Map]] - P0/P1/P2/P3 и список того, что не стоит делать сейчас.

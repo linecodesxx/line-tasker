@@ -101,7 +101,7 @@ export default function WorkspacePage() {
           <div className="flex flex-col gap-3 xl:flex-row xl:items-center xl:justify-between">
             <div>
               <Link
-                href="/"
+                href="/workspaces"
                 className=" flex gap-1 items-center text-sm font-medium text-neutral-500 transition hover:text-neutral-900"
               >
                 <ArrowLeft className="w-6" />

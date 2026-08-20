@@ -61,7 +61,7 @@ export default function RegisterPage() {
         password: form.password,
       });
 
-      router.push("/");
+      router.push("/workspaces");
     } catch (err) {
       setError(err instanceof Error ? err.message : "Ошибка регистрации");
     } finally {

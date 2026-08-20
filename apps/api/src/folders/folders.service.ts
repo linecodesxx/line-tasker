@@ -13,14 +13,18 @@ import { RenameFolderDto } from "./dto/renameFolderDTO";
 export class FoldersService {
   constructor(private readonly prisma: PrismaService) {}
 
-  async getTree(workspaceId: string) {
+  async getTree(ownerId: string, workspaceId: string) {
+    await this.ensureWorkspaceAccess(ownerId, workspaceId);
+
     return this.prisma.folder.findMany({
       where: { workspaceId },
       orderBy: [{ parentId: "asc" }, { name: "asc" }],
     });
   }
 
-  async create(workspaceId: string, dto: CreateFolderDto) {
+  async create(ownerId: string, workspaceId: string, dto: CreateFolderDto) {
+    await this.ensureWorkspaceAccess(ownerId, workspaceId);
+
     if (dto.parentId) {
       const parent = await this.prisma.folder.findFirst({
         where: { id: dto.parentId, workspaceId },
@@ -41,7 +45,14 @@ export class FoldersService {
     });
   }
 
-  async rename(id: string, workspaceId: string, dto: RenameFolderDto) {
+  async rename(
+    ownerId: string,
+    id: string,
+    workspaceId: string,
+    dto: RenameFolderDto,
+  ) {
+    await this.ensureWorkspaceAccess(ownerId, workspaceId);
+
     const folder = await this.prisma.folder.findFirst({
       where: { id, workspaceId },
     });
@@ -60,7 +71,14 @@ export class FoldersService {
     return updated;
   }
 
-  async move(id: string, workspaceId: string, dto: MoveFolderDto) {
+  async move(
+    ownerId: string,
+    id: string,
+    workspaceId: string,
+    dto: MoveFolderDto,
+  ) {
+    await this.ensureWorkspaceAccess(ownerId, workspaceId);
+
     const folders = await this.prisma.folder.findMany({
       where: { workspaceId },
       select: {
@@ -123,7 +141,9 @@ export class FoldersService {
     return false;
   }
 
-  async remove(id: string, workspaceId: string) {
+  async remove(ownerId: string, id: string, workspaceId: string) {
+    await this.ensureWorkspaceAccess(ownerId, workspaceId);
+
     const folder = await this.prisma.folder.findFirst({
       where: { id, workspaceId },
       include: {
@@ -226,6 +246,20 @@ export class FoldersService {
         where: { id: task.id },
         data: { relativePath },
       });
+    }
+  }
+
+  private async ensureWorkspaceAccess(ownerId: string, workspaceId: string) {
+    const workspace = await this.prisma.workspace.findFirst({
+      where: {
+        id: workspaceId,
+        ownerId,
+      },
+      select: { id: true },
+    });
+
+    if (!workspace) {
+      throw new NotFoundException("Workspace not found");
     }
   }
 }

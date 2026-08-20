@@ -1,5 +1,7 @@
 # LineTasker: как устроен workspace, editor и backend
 
+> Карта связей: [[00 LineTasker Index]] · [[Architecture Map]] · [[Implementation Map]] · [[TODO|Roadmap]]
+
 ## Что это за проект
 
 `line-tasker` - это `pnpm`-монорепозиторий с двумя основными приложениями:
@@ -1084,3 +1086,10 @@ Backend:
 - папки поддерживают файловую структуру за счёт пересчёта `relativePath`.
 
 В текущем состоянии система уже хорошо работает как markdown-workspace для заметок, но task-часть и некоторые вопросы безопасности/UX ещё требуют доведения до конца.
+
+## Связи
+
+- Для общего входа в vault см. [[00 LineTasker Index]].
+- Архитектурные решения и риски собраны в [[Architecture Map]].
+- Привязка разделов документа к файлам кода лежит в [[Implementation Map]].
+- Приоритеты и post-MVP темы см. в [[Backlog Map]] и [[TODO|roadmap]].
